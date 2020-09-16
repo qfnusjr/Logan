@@ -22,7 +22,7 @@
 
 #import <Foundation/Foundation.h>
 
-extern void loganUseASL(BOOL b);
+FOUNDATION_EXTERN void loganUseASL(BOOL b);
 
 typedef void (^LoganUploadResultBlock)(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error);
 
@@ -40,14 +40,14 @@ typedef void (^LoganFilePathBlock)(NSString *_Nullable filePath);
  @param aes_iv16  16位aes加密iv
  @param max_file  日志文件最大大小，超过该大小后日志将不再被写入，单位：byte。
  */
-extern void loganInit(NSData *_Nonnull aes_key16, NSData *_Nonnull aes_iv16, uint64_t max_file);
+FOUNDATION_EXTERN void loganInit(NSData *_Nonnull aes_key16, NSData *_Nonnull aes_iv16, uint64_t max_file);
 
 /**
  设置本地保存最大文件天数
 
  @param max_reversed_date 超过该文件天数的文件会被Logan删除，默认7天
  */
-extern void loganSetMaxReversedDate(int max_reversed_date);
+FOUNDATION_EXTERN void loganSetMaxReversedDate(int max_reversed_date);
 /**
  记录Logan日志
  
@@ -58,38 +58,38 @@ extern void loganSetMaxReversedDate(int max_reversed_date);
  用例：
  logan(1, @"this is a test");
  */
-extern void logan(NSUInteger type, NSString *_Nonnull log);
+FOUNDATION_EXTERN void logan(NSUInteger type, NSString *_Nonnull log);
 
 /**
  将日志全部输出到控制台的开关，默认NO
  
  @param b 开关
  */
-extern void loganUseASL(BOOL b);
+FOUNDATION_EXTERN void loganUseASL(BOOL b);
 
 /**
  立即写入日志文件
  */
-extern void loganFlush(void);
+FOUNDATION_EXTERN void loganFlush(void);
 
 /**
  日志信息输出开关，默认NO
  
  @param b 开关
  */
-extern void loganPrintClibLog(BOOL b);
+FOUNDATION_EXTERN void loganPrintClibLog(BOOL b);
 
 /**
  清除本地所有日志
  */
-extern void loganClearAllLogs(void);
+FOUNDATION_EXTERN void loganClearAllLogs(void);
 
 /**
  返回本地所有文件名及大小(单位byte)
  
  @return @{@"2018-11-21":@"110"}
  */
-extern NSDictionary *_Nullable loganAllFilesInfo(void);
+FOUNDATION_EXTERN NSDictionary *_Nullable loganAllFilesInfo(void);
 
 /**
  根据日期获取上传日志的文件路径，异步方式！
@@ -97,7 +97,7 @@ extern NSDictionary *_Nullable loganAllFilesInfo(void);
  @param date 日志日期 格式："2018-11-21"
  @param filePathBlock 回调返回文件路径，在主线程中回调
  */
-extern void loganUploadFilePath(NSString *_Nonnull date, LoganFilePathBlock _Nonnull filePathBlock);
+FOUNDATION_EXTERN void loganUploadFilePath(NSString *_Nonnull date, LoganFilePathBlock _Nonnull filePathBlock);
 
 /**
  上传指定日期的日志
@@ -108,11 +108,11 @@ extern void loganUploadFilePath(NSString *_Nonnull date, LoganFilePathBlock _Non
  @param unionId 当前用户的唯一标识,用来区分日志来源用户
  @param resultBlock 服务器返回结果
  */
-extern void loganUpload(NSString * _Nonnull url, NSString * _Nonnull date,NSString * _Nullable appId, NSString *_Nullable unionId,NSString *_Nullable deviceId, LoganUploadResultBlock _Nullable resultBlock);
+FOUNDATION_EXTERN void loganUpload(NSString * _Nonnull url, NSString * _Nonnull date,NSString * _Nullable appId, NSString *_Nullable unionId,NSString *_Nullable deviceId, LoganUploadResultBlock _Nullable resultBlock);
 
 /**
  返回今天日期
  
  @return @"2018-11-21"
  */
-extern NSString *_Nonnull loganTodaysDate(void);
+FOUNDATION_EXTERN NSString *_Nonnull loganTodaysDate(void);
