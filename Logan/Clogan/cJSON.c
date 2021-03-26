@@ -865,8 +865,9 @@ static cJSON_bool print_string_ptr(const unsigned char * const input, printbuffe
     /* no characters have to be escaped */
     if (escape_characters == 0)
     {
-        output[0] = '\"';
-        memcpy(output + 1, input, output_length);
+        output[0] = '\n';
+        output[1] = '\"';
+        memcpy(output + 2, input, output_length);
         output[output_length + 1] = '\"';
         output[output_length + 2] = '\0';
 
