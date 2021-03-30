@@ -57,7 +57,7 @@ construct_json_data_clogan(char *log, int flag, long long local_time, char *thre
             if (NULL != construct_data) {
                 memset(construct_data, 0, sizeof(Construct_Data_cLogan));
                 size_t str_len = strlen(back_data);
-                size_t length = str_len + 1;
+                size_t length = str_len + 2;
                 unsigned char *temp_data = (unsigned char *) malloc(length);
                 if (NULL != temp_data) {
                     unsigned char *temp_point = temp_data;
@@ -66,6 +66,7 @@ construct_json_data_clogan(char *log, int flag, long long local_time, char *thre
                     temp_point += str_len;
                     char return_data[] = {'\n'};
                     memcpy(temp_point, return_data, 1); //添加\n字符
+                    temp_data[length - 1] = '\n';
                     construct_data->data = (char *) temp_data; //赋值
                     construct_data->data_len = (int) length;
                 } else {
